@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+
+        <title> Home Page </title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    </head>
+
+        <body>
+            
+            <h2>Enter a movie to learn more:</h2>
+            <form role="search" id="movie-form" class="form-horizontal", action = "{{ url_for('lookup') }}" method="get">
+                    <h4>Movie:  <input type="text" id="movie"></h4>
+                    <button type="submit" value="submit" id="lookup" class="btn">Movie me</button>
+            </form>
+            <br><br>
+
+            <h4>Here are some movies to try:<br><br>
+                <ul><li>50 First Dates</li>
+                <li>About a Boy</li>
+                <li>Alcatraz</li></ul>
+
+            <div id='map-canvas'></div>
+
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+        <script type="text/javascript"src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+        </body>
+
+
+
+</html>
