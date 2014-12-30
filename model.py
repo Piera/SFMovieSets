@@ -18,7 +18,7 @@ class Movie_Location(Base):
     id = Column(Integer, primary_key = True)
     movie_title = Column(String(200), nullable = False)
     year = Column(Integer, nullable=False)
-    location = Column(String(200), nullable = False)
+    location = Column(String(200), nullable = True)
   
 
 def add_data():
