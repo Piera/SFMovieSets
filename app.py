@@ -40,4 +40,6 @@ def movie_list():
 	return all_movies
 
 if __name__ == "__main__":
-    app.run(debug = True)
+	PORT = int(os.environ.get("PORT", 5000))
+	DEBUG = "NO_DEBUG" not in os.environ
+	app.run(debug = DEBUG, port=PORT, host="0.0.0.0")
