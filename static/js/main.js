@@ -10,7 +10,7 @@ $('#movie-form').submit(function(evt) {
     // coordinates_array = [];
     var movie = $("#movie").val()
 
-  $.get(
+    $.get(
         "/lookup", {
             movie: movie
         },
@@ -22,26 +22,27 @@ $('#movie-form').submit(function(evt) {
                 local_response = response[i] + ' SF';
                 console.log(local_response);
                 geocoder.geocode({ 
-                    address: local_response}, function(results, status) {
-                            if (status == google.maps.GeocoderStatus.OK) {
-                                console.log("results from geocode " + results)
-                                var lat = results[0].geometry.location.lat();
-                                var lng = results[0].geometry.location.lng();
-                                console.log("lat and long from geocode results " + lat, lng);
-                                var coordinates = new google.maps.LatLng(lat,lng);
-                                console.log("google map coordinates " + coordinates);
-                                marker = new google.maps.Marker ({
-                                    map: map,
-                                    position: coordinates,
-                                    animation: google.maps.Animation.DROP,
-                                    });
-                                    positions.push(marker);
-                                // }
-                            }
+                    address: local_response
+                }, 
+                    function(results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            console.log("results from geocode " + results)
+                            var lat = results[0].geometry.location.lat();
+                            var lng = results[0].geometry.location.lng();
+                            console.log("lat and long from geocode results " + lat, lng);
+                            var coordinates = new google.maps.LatLng(lat,lng);
+                            console.log("google map coordinates " + coordinates);
+                            marker = new google.maps.Marker ({
+                                map: map,
+                                position: coordinates,
+                                animation: google.maps.Animation.DROP,
+                            });
+                                positions.push(marker);
+                        }
 
-                            else  {
-                                alert('WOAH:' + status);
-                            }
+                        else  {
+                            alert('WOAH:' + status);
+                        }
                     }
                 )
             }
@@ -51,23 +52,299 @@ $('#movie-form').submit(function(evt) {
 });
 
 function initialize() {
-  geocoder = new google.maps.Geocoder();
-  var mapOptions = {
-    zoom: 12,
-    center: new google.maps.LatLng(37.7577, -122.4376)
-  };
-  map = new google.maps.Map($('#map-canvas')[0], mapOptions);
+    geocoder = new google.maps.Geocoder();
+    var mapOptions = {
+        zoom: 12,
+        center: new google.maps.LatLng(37.7577, -122.4376)
+    };
+    map = new google.maps.Map($('#map-canvas')[0], mapOptions);
 }
 
 function clearAllMap(map) {
     if (positions.length !=0) {
         for (var i = 0; i < positions.length; i++) {
-        positions[i].setMap(null)
-         }
+            positions[i].setMap(null)
+        }
         positions = [];
-    } else {
+    } 
+    else {
         console.log("Nothing to clear");
     }
 }
+
+$(function() {
+    var movie_list = 
+        [
+            "Final Analysis",
+            "Jagged Edge",
+            "Dream with the Fishes",
+            "Serial",
+            "A Smile Like Yours ",
+            "Sudden Impact",
+            "The Towering Inferno",
+            "Hemingway & Gelhorn",
+            "Big Sur",
+            "The Dead Pool",
+            "Big Touble in Little China",
+            "The Jazz Singer",
+            "Fathers' Day",
+            "Nine to Five",
+            "I's",
+            "The Conversation",
+            "The Laughing Policeman",
+            "Barbary Coast",
+            "Dying Young",
+            "The Princess Diaries",
+            "The Ten Commandments",
+            "The Zodiac",
+            "Play it Again, Sam",
+            "The Sweetest Thing",
+            "The Diary of a Teenage Girl",
+            "Harold and Maude",
+            "Knife Fight",
+            "I Remember Mama",
+            "The Net",
+            "George of the Jungle",
+            "Need For Speed",
+            "Flubber",
+            "24 Hours on Craigslist",
+            "Birdman of Alcatraz",
+            "Serendipity",
+            "Metro",
+            "Julie and Jack",
+            "Magnum Force",
+            "House of Sand and Fog",
+            "The Presidio",
+            "Flower Drum Song",
+            "The Organization",
+            "Milk",
+            "Broken-A Modern Love Story ",
+            "Golden Gate",
+            "Marnie",
+            "Superman",
+            "My Reality",
+            "Tin Cup",
+            "Red Widow",
+            "The Doors",
+            "Getting Even with Dad",
+            "San Francisco",
+            "Homeward Bound II: Lost in San Francisco",
+            "Crackers",
+            "Can't Stop the Music",
+            "James and the Giant Peach",
+            "Until the End of the World",
+            "Hard to Hold",
+            "Red Diaper Baby",
+            "The Nightmare Before Christmas",
+            "Greed",
+            "Burglar",
+            "Interview With The Vampire",
+            "The Lineup",
+            "Never Die Twice",
+            "Take the Money and Run",
+            "The Wedding Planner",
+            "How Stella Got Her Groove Back",
+            "Down Periscope",
+            "Sister Act 2: Back in the Habit",
+            "What the Bleep Do We Know",
+            "Guess Who's Coming to Dinner",
+            "Sister Act",
+            "Foul Play",
+            "Big Eyes",
+            "The Enforcer",
+            "Junior",
+            "The Bridge",
+            "God is a Communist?* (show me heart universe)",
+            "It Came From Beneath the Sea",
+            "Freebie and the Bean",
+            "Swingin' Along",
+            "The Doctor",
+            "The Times of Harvey Milk",
+            "Haiku Tunnel",
+            "Point Blank",
+            "Raising Cain",
+            "The Pursuit of Happyness",
+            "Shoot the Moon",
+            "Sausalito",
+            "Sense8",
+            "The House on Telegraph Hill",
+            "Dawn of the Planet of the Apes",
+            "Experiment in Terror",
+            "Seven Girlfriends",
+            "Looking",
+            "Nora Prentiss",
+            "Alexander's Ragtime Band",
+            "Quicksilver",
+            "Heart Beat",
+            "About a Boy",
+            "Mission (aka City of Bars)",
+            "Just Like Heaven",
+            "Time After Time",
+            "D.O.A",
+            "A View to a Kill",
+            "Swing",
+            "On the Road",
+            "The Fan",
+            "To the Ends of the Earth",
+            "Forrest Gump",
+            "Live Nude Girls Unite",
+            "Tweek City",
+            "Parks and Recreation",
+            "What's Up Doc?",
+            "48 Hours",
+            "Another 48 Hours",
+            "Escape From Alcatraz",
+            "Basic Instinct",
+            "Petulia",
+            "Love & Taxes",
+            "City of Angels",
+            "The Rock",
+            "Rent",
+            "Alcatraz",
+            "Night of Henna",
+            "Groove",
+            "Dopamine",
+            "Copycat",
+            "So I Married an Axe Murderer",
+            "American Graffiti",
+            "Sudden Fear",
+            "The Competiton",
+            "Days of Wine and Roses",
+            "Hereafter",
+            "The Internship",
+            "Quitters",
+            "The Graduate",
+            "Hello Frisco, Hello",
+            "Chu Chu and the Philly Flash",
+            "Rollerball",
+            "Blue Jasmine",
+            "The Love Bug",
+            "Dim Sum: A Little Bit of Heart",
+            "A Night Full of Rain",
+            "A Smile Like Yours",
+            "Maxie",
+            "Invasion of the Body Snatchers",
+            "Godzilla",
+            "The Birds",
+            "Stigmata",
+            "Street Music",
+            "Kamikaze Hearts",
+            "The Maltese Falcon",
+            "Romeo Must Die",
+            "The Caine Mutiny",
+            "Boys and Girls",
+            "Forty Days and Forty Nights",
+            "What Dreams May Come",
+            "Tucker: The Man and His Dreams",
+            "The Californians",
+            "The Last of the Gladiators",
+            "Fearless",
+            "Bullitt",
+            "Jade",
+            "On the Beach",
+            "Midnight Lace",
+            "They Call Me MISTER Tibbs",
+            "Star Trek VI: The Undiscovered County",
+            "The Other Sister",
+            "Dream for an Insomniac",
+            "Panther",
+            "Yours, Mine and Ours",
+            "Vegas in Space",
+            "Gentleman Jim",
+            "Pretty Woman",
+            "Woman on the Run",
+            "Dark Passage",
+            "Nine Months",
+            "Bedazzled",
+            "Mother",
+            "High Crimes",
+            "By Hook or By Crook",
+            "Terminator - Genisys",
+            "Memoirs of an Invisible Man",
+            "The Woman In Red",
+            "The Bachelor",
+            "The Game",
+            "The Matrix",
+            "Phenomenon",
+            "180",
+            "The Parent Trap",
+            "Family Plot",
+            "Common Threads: Stories From the Quilt",
+            "Pal Joey",
+            "Mrs. Doubtfire",
+            "Patch Adams",
+            "Psych-Out",
+            "Attack of the Killer Tomatoes",
+            "Star Trek II : The Wrath of Khan",
+            "Ant-Man",
+            "Around the Fire",
+            "Pleasure of His Company",
+            "Edtv",
+            "Sneakers",
+            "Hulk",
+            "Fandom",
+            "Bee Season",
+            "Susan Slade",
+            "Mona Lisa Smile",
+            "True Believer",
+            "Just One Night",
+            "Happy Gilmore",
+            "Faces of Death",
+            "The Right Stuff",
+            "Twisted",
+            "Herbie Rides Again",
+            "The Master",
+            "Confessions of a Burning Man",
+            "Patty Hearst",
+            "Jack",
+            "Innerspace",
+            "The Core",
+            "Shattered",
+            "High Anxiety",
+            "CSI: NY- episode 903",
+            "Vertigo",
+            "Dirty Harry",
+            "Casualties of War",
+            "Zodiac",
+            "Fat Man and Little Boy",
+            "Sweet November",
+            "San Andreas",
+            "A Jitney Elopement",
+            "The Candidate",
+            "Class Action",
+            "Thief of Hearts",
+            "50 First Dates",
+            "Star Trek IV: The Voyage Home",
+            "Babies",
+            "Cherish",
+            "When a Man Loves a Woman",
+            "Bicentennial Man",
+            "Beaches",
+            "Indiana Jones and the Last Crusade",
+            "After the Thin Man",
+            "Sphere",
+            "Heart and Souls",
+            "Pacific Heights",
+            "Playing Mona Lisa",
+            "Shadow of the Thin Man",
+            "Nina Takes a Lover",
+            "All About Eve",
+            "Doctor Doolittle",
+            "American Yearbook",
+            "Under the Tuscan Sun",
+            "The Fog of War",
+            "Murder in the First",
+            "Chan is Missing",
+            "Woman on Top",
+            "The Assassination of Richard Nixon",
+            "The Lady from Shanghai",
+            "Dr. Doolittle 2",
+            "Joy Luck Club",
+            "Desperate Measures"
+        ]
+    $("#movie").autocomplete( { source: movie_list });
+});
+
+
 
 
