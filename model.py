@@ -4,11 +4,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
 
-ENGINE = create_engine('postgresql:///pieradamonte', echo = True)
-DATABASE_URL = 'postgresql:///pieradamonte'
-
-# ENGINE = create_engine(DATABASE_URL, echo = False)
-# DATABASE_URL = os.environ.get('DATABASE_URL', 'postgresql:///pieradamonte')
+# ENGINE = create_engine('postgresql:///pieradamonte', echo = True)
+# DATABASE_URL = 'postgresql:///pieradamonte'
+DATABASE_URL = os.environ.get('DATABASE_URL', 'postgresql:///pieradamonte')
+ENGINE = create_engine(DATABASE_URL, echo = False)
 
 session = scoped_session(sessionmaker(bind=ENGINE, autocommit = False, autoflush = False)) 
 Base = declarative_base()
@@ -26,8 +25,8 @@ def add_data():
     global ENGINE
     global Session
 
-    ENGINE = create_engine('postgresql:///pieradamonte', echo = True)
-    # ENGINE = create_engine(DATABASE_URL, echo = False)
+    # ENGINE = create_engine('postgresql:///pieradamonte', echo = True)
+    ENGINE = create_engine(DATABASE_URL, echo = False)
     Session = scoped_session(sessionmaker(bind=ENGINE, autocommit = False, autoflush = False)) 
 
     session = Session()
@@ -37,8 +36,8 @@ def create_table():
     global ENGINE
     global Session
 
-    ENGINE = create_engine('postgresql:///pieradamonte', echo = True)
-    # ENGINE = create_engine(DATABASE_URL, echo = False)
+    # ENGINE = create_engine('postgresql:///pieradamonte', echo = True)
+    ENGINE = create_engine(DATABASE_URL, echo = False)
     Session = sessionmaker(bind=ENGINE)
     Base.metadata.create_all(ENGINE)
 
