@@ -23,6 +23,7 @@ def load_movie_location_data(session):
 	session.commit()
 
 def main():
+	model.create_table()
 	s = model.add_data()
 	load_movie_location_data(s)
     
