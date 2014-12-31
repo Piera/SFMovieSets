@@ -30,17 +30,21 @@ def lookup():
 def movie_list():
 	movie_dict = {}
 	movies = dbsession.query(model.Movie.movie_title).all()
-	counter = 0
-	for movie in movies:
-		print movie
-		movie_dict[movie] = counter
-		counter = counter + 1
-	print movie_dict.keys()
-	print len(movie_dict.values())
-	movie_titles_list = movie_dict.keys()
-	print movie_titles_list
-	all_movies = json.dumps(movie_titles_list)
+	all_movies = json.dumps(movies)
 	return all_movies
+
+@app.route("/<path:year>")
+def movies_by_year(year):
+	movie_dict = {}
+	movie_list = []
+	movies = dbsession.query(model.Movie.movie_title).filter_by(year=year).all()
+	print movies
+	for movie in movies:
+		movie_list.append(movie)
+		movie_dict[year] = movie_list
+	movie_by_year = json.dumps(movie_dict)
+	return movie_by_year
+
 
 if __name__ == "__main__":
 	PORT = int(os.environ.get("PORT", 5000))
