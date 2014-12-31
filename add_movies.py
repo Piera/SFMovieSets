@@ -4,7 +4,6 @@ import json
 import time 
 import urllib2
 import model
-import requests
 from model import Movie, Movie_Location
 from model import session as dbsession
 from datetime import datetime
