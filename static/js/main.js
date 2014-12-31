@@ -7,7 +7,6 @@ $(document).ready(function() {
 
 $('#movie-form').submit(function(evt) {
     evt.preventDefault();  
-    // coordinates_array = [];
     var movie = $("#movie").val()
 
     $.get(
@@ -18,32 +17,36 @@ $('#movie-form').submit(function(evt) {
         function (response) {
             clearAllMap();
             coordinates_array=[];
+            var infowindow = null;
+            infowindow = new google.maps.InfoWindow();
+            var all_coordinates = [];
             for (var i in response) {
-                local_response = response[i] + ' SF';
-                console.log(local_response);
-                geocoder.geocode({ 
-                    address: local_response
-                }, 
-                    function(results, status) {
-                        if (status == google.maps.GeocoderStatus.OK) {
-                            console.log("results from geocode " + results)
-                            var lat = results[0].geometry.location.lat();
-                            var lng = results[0].geometry.location.lng();
-                            console.log("lat and long from geocode results " + lat, lng);
-                            var coordinates = new google.maps.LatLng(lat,lng);
-                            console.log("google map coordinates " + coordinates);
-                            marker = new google.maps.Marker ({
-                                map: map,
-                                position: coordinates,
-                                animation: google.maps.Animation.DROP,
-                            });
-                                positions.push(marker);
-                        }
-                        else {
-                            alert('Geocode was not successful for the following reason: ' + status);
-                        }
-                    }
-                )
+                if (response[i]['fun_fact']) {
+                    info_text = ("<strong>Location: </strong>" + response[i]['location'] + "<br><strong>Fun fact: </strong>" + response[i]['fun_fact']);
+                } else {
+                    info_text = ("<strong>Location: </strong>" + response[i]['location']);
+                }
+                var lat = response[i]['lat'];
+                var lng = response[i]['lng'];
+                console.log(lat, lng)
+                var coordinate = new google.maps.LatLng(lat,lng);
+                marker = new google.maps.Marker ({
+                    map: map,
+                    position: coordinate,
+                    info: info_text,
+                    animation: google.maps.Animation.DROP,
+                });
+                all_coordinates.push(coordinate);
+                bounds = new google.maps.LatLngBounds();
+                for (i=0;i<all_coordinates.length;i++) {
+                    bounds.extend(all_coordinates[i]);
+                }
+                map.fitBounds(bounds);
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent(this.info);
+                    infowindow.open(map, this);
+                });
+                positions.push(marker);
             }
         },
     "json"
@@ -343,7 +346,4 @@ $(function() {
         ]
     $("#movie").autocomplete( { source: movie_list });
 });
-
-
-
 

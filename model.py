@@ -2,7 +2,7 @@ import os
 import psycopg2
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, Float, String, ForeignKey
 
 DATABASE_URL = os.environ.get('DATABASE_URL', 'postgresql:///pieradamonte')
 ENGINE = create_engine(DATABASE_URL, echo = False)
@@ -24,6 +24,8 @@ class Movie_Location(Base):
     movie_id = Column(Integer, ForeignKey('movies.id'))
     location = Column(String(200), nullable = True)
     fun_facts = Column(String(500), nullable = True)
+    lat = Column(Float, nullable = True)
+    lng = Column(Float, nullable = True)
     movie = relationship("Movie", backref=backref("movie_locations", order_by=id))
 
 def add_data():
