@@ -95,9 +95,9 @@ def load_movie_location_data(session):
 			pass 
 
 def main():
-	# model.create_tables()
+	model.create_tables()
 	s = model.add_data()
-	# load_movie_data(s)
+	load_movie_data(s)
 	load_movie_location_data(s)
     
 if __name__ == "__main__":
