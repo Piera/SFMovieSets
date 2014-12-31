@@ -5,14 +5,14 @@
 
         <title> Home Page </title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
         <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
 
     </head>
 
         <body>
 
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 
             <form role="search" class="navbar-form navbar-right" id="movie-form" action="{{ url_for('lookup') }}" method="get">
                 <div class="form-group">

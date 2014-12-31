@@ -39,9 +39,8 @@ $('#movie-form').submit(function(evt) {
                             });
                                 positions.push(marker);
                         }
-
-                        else  {
-                            alert('WOAH:' + status);
+                        else {
+                            alert('Geocode was not successful for the following reason: ' + status);
                         }
                     }
                 )
