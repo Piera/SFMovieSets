@@ -75,6 +75,7 @@ def load_movie_location_data(session):
 			else:
 				lat = None
 				lng = None
+				print "this is none, none: ", lat, lng
 			if movie[11]:
 				fun_fact = movie[11]
 			else:
