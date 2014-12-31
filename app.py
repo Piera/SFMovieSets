@@ -15,7 +15,7 @@ def lookup():
 	print request.values['movie']
 	movie_input = request.values['movie']
 	print movie_input
-	movies = dbsession.query(model.Movie_Location).filter_by(movie_title = movie_input).all()
+	movies = dbsession.query(model.Movie).filter_by(movie_title = movie_input).all()
 	location_list = []
 	for movie in movies:
 		print movie.location
@@ -27,7 +27,7 @@ def lookup():
 @app.route("/all_movies")
 def movie_list():
 	movie_dict = {}
-	movies = dbsession.query(model.Movie_Location.movie_title).all()
+	movies = dbsession.query(model.Movie.movie_title).all()
 	counter = 0
 	for movie in movies:
 		print movie
