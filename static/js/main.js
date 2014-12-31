@@ -26,27 +26,31 @@ $('#movie-form').submit(function(evt) {
                 } else {
                     info_text = ("<strong>Location: </strong>" + response[i]['location']);
                 }
-                var lat = response[i]['lat'];
-                var lng = response[i]['lng'];
-                console.log(lat, lng)
-                var coordinate = new google.maps.LatLng(lat,lng);
-                marker = new google.maps.Marker ({
-                    map: map,
-                    position: coordinate,
-                    info: info_text,
-                    animation: google.maps.Animation.DROP,
-                });
-                all_coordinates.push(coordinate);
-                bounds = new google.maps.LatLngBounds();
-                for (i=0;i<all_coordinates.length;i++) {
-                    bounds.extend(all_coordinates[i]);
+                if (response[i]['lat']) {
+                    var lat = response[i]['lat'];
+                    var lng = response[i]['lng'];
+                    console.log(lat, lng)
+                    var coordinate = new google.maps.LatLng(lat,lng);
+                    marker = new google.maps.Marker ({
+                        map: map,
+                        position: coordinate,
+                        info: info_text,
+                        animation: google.maps.Animation.DROP,
+                    });
+                    all_coordinates.push(coordinate);
+                    bounds = new google.maps.LatLngBounds();
+                    for (i=0;i<all_coordinates.length;i++) {
+                        bounds.extend(all_coordinates[i]);
+                    }
+                    map.fitBounds(bounds);
+                    google.maps.event.addListener(marker, 'click', function() {
+                        infowindow.setContent(this.info);
+                        infowindow.open(map, this);
+                    });
+                    positions.push(marker);
+                } else {
+                    continue;
                 }
-                map.fitBounds(bounds);
-                google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.setContent(this.info);
-                    infowindow.open(map, this);
-                });
-                positions.push(marker);
             }
         },
     "json"

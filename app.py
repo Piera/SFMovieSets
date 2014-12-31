@@ -26,7 +26,7 @@ def lookup():
 		print movie.fun_facts
 		if movie.fun_facts:
 			location_list.append({'location': movie.location, 'fun_fact': movie.fun_facts, 'lat':movie.lat, 'lng':movie.lng})
-		else:
+		else: 
 			location_list.append({'location': movie.location, 'lat':movie.lat, 'lng':movie.lng})
 	print location_list
 	if location_list == []:
