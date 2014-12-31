@@ -17,7 +17,7 @@
             <form role="search" class="navbar-form navbar-right" id="movie-form" action="{{ url_for('lookup') }}" method="get">
                 <div class="form-group">
                     <label for="inputMovie" class="addressInput"></label>
-                    <input id="movie" size="50" type="text" class="form-control" value="Alcatraz">
+                    <input id="movie" size="50" type="text" class="form-control" placeholder="Start typing to search for movies">
                     <input type="submit" class="btn" value="Search" id="lookup">
                 </div>
             </form>
@@ -39,9 +39,7 @@
             </div>
 
             <div class="row" id="bottom-row">
-                <div class="col-md-6">
-                </div> 
-                <div class="col-md-6">
+                <div class="col-md-12" id="api-info">
                 </div>
             </div>
 

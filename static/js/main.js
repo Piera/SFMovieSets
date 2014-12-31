@@ -20,12 +20,15 @@ $('#movie-form').submit(function(evt) {
             var infowindow = null;
             infowindow = new google.maps.InfoWindow();
             var all_coordinates = [];
+            $('#movie-info').html('');
+            $('#movie-info').append('<h3>Set locations for ' + movie + ':<br><br></h3>');
             for (var i in response) {
                 if (response[i]['fun_fact']) {
                     info_text = ("<strong>Location: </strong>" + response[i]['location'] + "<br><strong>Fun fact: </strong>" + response[i]['fun_fact']);
                 } else {
                     info_text = ("<strong>Location: </strong>" + response[i]['location']);
                 }
+                $("#movie-info").append('<li>' + response[i]['location'] + '</li><br>');
                 if (response[i]['lat']) {
                     var lat = response[i]['lat'];
                     var lng = response[i]['lng'];
