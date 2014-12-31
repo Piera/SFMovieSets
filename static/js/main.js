@@ -19,45 +19,50 @@ $('#movie-form').submit(function(evt) {
         },
 
         function (response) {
-            clearAllMap();
-            coordinates_array=[];
-            var infowindow = null;
-            infowindow = new google.maps.InfoWindow();
-            var all_coordinates = [];
-            $('#movie-info').html('');
-            $('#movie-info').append('<h3>Set locations for ' + movie + ':<br><br></h3>');
-            for (var i in response) {
-                if (response[i]['fun_fact']) {
-                    info_text = ("<strong>Location: </strong>" + response[i]['location'] + "<br><strong>Fun fact: </strong>" + response[i]['fun_fact']);
-                } else {
-                    info_text = ("<strong>Location: </strong>" + response[i]['location']);
-                }
-                $("#movie-info").append('<li>' + response[i]['location'] + '</li><br>');
-                if (response[i]['lat']) {
-                    var lat = response[i]['lat'];
-                    var lng = response[i]['lng'];
-                    console.log(lat, lng)
-                    var coordinate = new google.maps.LatLng(lat,lng);
-                    marker = new google.maps.Marker ({
-                        map: map,
-                        position: coordinate,
-                        info: info_text,
-                        animation: google.maps.Animation.DROP,
-                    });
-                    all_coordinates.push(coordinate);
-                    bounds = new google.maps.LatLngBounds();
-                    for (i=0;i<all_coordinates.length;i++) {
-                        bounds.extend(all_coordinates[i]);
+            if (response['Error']) {
+                $('#movie-info').html('');
+                $('#movie-info').append('<h3>Set locations for ' + movie + ' are not in our database.  Try again!');
+            } else {
+                clearAllMap();
+                coordinates_array=[];
+                var infowindow = null;
+                infowindow = new google.maps.InfoWindow();
+                var all_coordinates = [];
+                $('#movie-info').html('');
+                $('#movie-info').append('<h3>Set locations for ' + movie + ':<br><br></h3>');
+                for (var i in response) {
+                    if (response[i]['fun_fact']) {
+                        info_text = ("<strong>Location: </strong>" + response[i]['location'] + "<br><strong>Fun fact: </strong>" + response[i]['fun_fact']);
+                    } else {
+                        info_text = ("<strong>Location: </strong>" + response[i]['location']);
                     }
-                    map.fitBounds(bounds);
-                    google.maps.event.addListener(marker, 'click', function() {
-                        infowindow.setContent(this.info);
-                        infowindow.open(map, this);
-                    });
-                    positions.push(marker);
-                } else {
-                    continue;
-                }
+                    $("#movie-info").append('<li>' + response[i]['location'] + '</li><br>');
+                    if (response[i]['lat']) {
+                        var lat = response[i]['lat'];
+                        var lng = response[i]['lng'];
+                        console.log(lat, lng)
+                        var coordinate = new google.maps.LatLng(lat,lng);
+                        marker = new google.maps.Marker ({
+                            map: map,
+                            position: coordinate,
+                            info: info_text,
+                            animation: google.maps.Animation.DROP,
+                        });
+                        all_coordinates.push(coordinate);
+                        bounds = new google.maps.LatLngBounds();
+                        for (i=0;i<all_coordinates.length;i++) {
+                            bounds.extend(all_coordinates[i]);
+                        }
+                        map.fitBounds(bounds);
+                        google.maps.event.addListener(marker, 'click', function() {
+                            infowindow.setContent(this.info);
+                            infowindow.open(map, this);
+                        });
+                        positions.push(marker);
+                    } else {
+                        continue;
+                    }
+                }         
             }
         },
     "json"
