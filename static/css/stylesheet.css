@@ -13,6 +13,10 @@ h2#logo {
     font-family: 'Roboto Slab', serif;
 }
 
+#movie-info {
+    font-family: 'Roboto Slab', serif;
+}
+
 .navbar-form .form-control {
     margin: 5px;
 }

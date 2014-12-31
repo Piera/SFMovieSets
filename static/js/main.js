@@ -5,6 +5,10 @@ $(document).ready(function() {
     initialize();
 });
 
+$('#movie-info').html('<h3>Welcome to SF Movie Sets!</h3><br>');
+$('#movie-info').append('<h4>Start typing in the search bar to search for movies shot in San Francisco.<h4>');
+$('#movie-info').append('<h4>Or, take advantage of one of our three APIs detailed below.</h4>');
+
 $('#movie-form').submit(function(evt) {
     evt.preventDefault();  
     var movie = $("#movie").val()
