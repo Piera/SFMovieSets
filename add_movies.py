@@ -70,9 +70,10 @@ def load_movie_location_data(session):
 				lng = jsongeocode['results'][0]['geometry']['location']['lng']
 			print lat, lng
 			# Make sure lat/long point is in or near SF:
-			if lat > 37.9076397 and lat < 37.598555:
+			if 37.4319 <= lat <= 37.907 and -122.8518 <= lng <= -122.1228:
+				print "Confirming: SF"
+			else:
 				lat = None
-			if lng > -122.852002 and lng < -122.2482681:
 				lng = None
 			if movie[11]:
 				fun_fact = movie[11]
@@ -94,9 +95,9 @@ def load_movie_location_data(session):
 			pass 
 
 def main():
-	model.create_tables()
+	# model.create_tables()
 	s = model.add_data()
-	load_movie_data(s)
+	# load_movie_data(s)
 	load_movie_location_data(s)
     
 if __name__ == "__main__":
