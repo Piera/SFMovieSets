@@ -35,22 +35,21 @@ I used jQuery to handle the AJAX requests, to update the DOM, and jQuery UI to p
 To maintain focus on the back end, I chose to use Boostrap to prototype the solution.
 
 *Testing:*  
-This is on the "what is left" list.  I am eager to learn more about unit and integration tests, and tests specifically for APIs! 
+This is on the "what is left" list.  I am eager to learn more about unit and integration tests, and tests specifically for APIs!
+
 *If I were to spend more time on the project:*
-First and formost: unit tests!
+- First and formost: unit tests!
 Then:
-1. Move the autocomplete to the server side, so that the functionality would accommodate any movie additions without maintaining a list in the main.js file.
-2. Improve performance of geocode service (e.g. clean data going into geocode)
-3. Provide geospacial features (closest film sets, film tour routes)
-4. Improve responsiveness and front end
+- Move the autocomplete to the server side, so that the functionality would accommodate any movie additions without maintaining a list in the main.js file.
+- Improve performance of geocode service (e.g. clean data going into geocode)
+- Provide geospacial features (closest film sets, film tour routes)
+- Improve responsiveness and front end
 
 **Link to other code, projects:**
-snowbase-project@herokuapp.com
-github.com/Piera/Project
+snowbase-project@herokuapp.com, http://github.com/Piera/Project
 
 **Link to your resume or public profile.**
 http://linkedin.com/in/pieradamonte
 
 **Link to to the hosted application:**
-sfmoviesets-project@herokuapp.com
-http://github.com/Piera/Project-U-C
+http://sfmoviesets-project@herokuapp.com, http://github.com/Piera/Project-U-C
