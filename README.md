@@ -46,12 +46,12 @@ Then:
 - Improve responsiveness and front end
 
 **Link to other code, projects:**
-[SnowBase](www.snowbase-project@herokuapp.com), 
+[SnowBase](http://snowbase-project.herokuapp.com/), 
 http://github.com/Piera/Project
 
 **Link to your resume or public profile.**
 http://linkedin.com/in/pieradamonte
 
 **Link to to the hosted application:**
-[SFMovieSets](www.sfmoviesets-project@herokuapp.com), 
+[SFMovieSets](http://sfmoviesets-project.herokuapp.com/), 
 http://github.com/Piera/Project-U-C
