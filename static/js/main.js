@@ -5,9 +5,33 @@ $(document).ready(function() {
     initialize();
 });
 
-$('#movie-info').html('<h3>Welcome to SF Movie Sets!</h3><br>');
-$('#movie-info').append('<h4>Start typing in the search bar to search for movies shot in San Francisco.<h4>');
+$('#movie-info').html('<h2>Welcome to SF Movie Sets!</h2><br>');
+$('#movie-info').append('<h4>Start typing in the search bar to search for movies filmed in San Francisco.<h4>');
 $('#movie-info').append('<h4>Or, take advantage of one of our three APIs detailed below.</h4>');
+
+$('#api-info').html('<br><h2>Use our APIs to look up movies filmed in San Francisco</h2><br>');
+$('#api-info').append('<h3>Movie Lookup:</h3>');
+$('#api-info').append('<h4>Request Parameters:</h4> Movie title (string)');
+$('#api-info').append('<h4>Response Parameters:</h4>location (string):  Street address or description of location;<br>lat (float or null):  latitude<br>lng (float or null):  longitude<br>');
+$('#api-info').append('<h4>Description:</h4>Any movie title that can be found using our autocomplete. E.g., "Alcatraz"<br>');
+$('#api-info').append('If there are more than one words in the title, replace spaces with "+". Example "Jagged+Edge"<br></h4>');
+$('#api-info').append('<h4>Sample call / click to view sample response:</h4>');
+$('#api-info').append('<a href = "http://sfmoviesets-project.herokuapp.com/lookup?movie=180" target="_blank">http://sfmoviesets-project.herokuapp.com/lookup?movie=180</a><br>');
+$('#api-info').append('<a href = "http://sfmoviesets-project.herokuapp.com/lookup?movie=Jagged+Edge" target="_blank">http://sfmoviesets-project.herokuapp.com/lookup?movie=Jagged+Edge</a><br></h4>');
+
+$('#api-info').append('<h3>Movies by Year:</h3>');
+$('#api-info').append('<h4>Request Parameters:</h4> Year (int)');
+$('#api-info').append('<h4>Response Parameters:</h4>year (int):  year<br>movie title (string): movie title from our movie database that was made during the input year<br>');
+$('#api-info').append('<h4>Description:</h4>Search for movies from any year beginning in year 1915, to current');
+$('#api-info').append('<h4>Sample call / click to view sample response:</h4>');
+$('#api-info').append('<a href = "http://sfmoviesets-project.herokuapp.com/1988" target="_blank">http://sfmoviesets-project.herokuapp.com/1988</a><br>');
+
+$('#api-info').append('<h3>All Movies:</h3>');
+$('#api-info').append('<h4>Request Parameter:</h4>all-movies');
+$('#api-info').append('<h4>Response Parameters:</h4>All movies (string):  every movie title from our database!');
+$('#api-info').append('<h4>Call / Response:</h4>');
+$('#api-info').append('<a href = "http://sfmoviesets-project.herokuapp.com/all-movies" target="_blank">http://sfmoviesets-project.herokuapp.com/all-movies</a><br>');
+
 
 $('#movie-form').submit(function(evt) {
     evt.preventDefault();  

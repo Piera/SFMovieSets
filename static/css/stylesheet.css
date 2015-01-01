@@ -17,6 +17,10 @@ h2#logo {
     font-family: 'Roboto Slab', serif;
 }
 
+#api-info {
+    font-family: 'Roboto Slab', serif;
+}
+
 .navbar-form .form-control {
     margin: 5px;
 }
