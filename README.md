@@ -9,7 +9,7 @@ Problem statement, from Uber:
 "Create a service that shows on a map where movies have been filmed in San Francisco. The user should be able to filter the view using autocompletion search."
 
 Solution:  
-Movie and location information are stored in two related PostgreSQL tables (movies, and movie_locations); locations are geocoded on the server side using Google maps API.  Movie input is acquired through a client-side jQuery autocomplete solution, and apis are handled via Get requests to my via python Flask micro framework, which returns json objects.
+Movie and location information are stored in two related PostgreSQL tables (movies, and movie_locations); locations are geocoded on the server side using Google maps API.  Movie input is acquired through a client-side jQuery autocomplete solution, and apis are handled via Get requests to a python Flask micro framework, which returns json objects for front end rendering or API json.
 
 **Focus:**
 Back End
