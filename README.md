@@ -14,15 +14,19 @@ Movie and location information are stored in two related PostgreSQL tables (movi
 Focus:
 Back End
 
-Reasoning behind choices, trade-offs, what's left, etc.:
+Reasoning behind technology/architecture choices, trade-offs, what's left, etc.:
 
-Technology:
 Database:  I chose to store the movie and location information in a relational database, so that users would not be subject to film data API limits or delays.  Originally, I used client side script to handle the geocoding, but faced API limits.  I then updated the add_movies seeding script to handle the geocoding and store the values in the database. API limits are circumvented by using a 1 second delay.  The seeding scripts can be run periodically to update the tables with any new films.  I chose to use PostgreSQL because of my familiarity with the technology and compatibility with Heroku.  If I were handling haversine calculations, for example, to find the 5 closest film sets to a given location, MongoDB would be a good option.  For the functionality I am providing, a relational database allows for expansion of the APIs, and is compatible with the deployment platform.
+
 Sqlalchemy ORM:  I chose Sqlalchemy ORM due to my familiarity with the technology and compatibility with PostgreSQL and Flask.
+
 Python:  My first language and still my favorite!
 Flask:  This is the micro framework that I am familiar with.  For a project of this size / complexity, I didn’t see a reason to try another framework.
+
 jQuery:  I used jQuery to handle the AJAX requests, to update the DOM, and jQuery UI to provide the autocomplete search functionality.  Given the simplicity of the front end of this project, I found jQuery was a good fit and it is also the solution that I am most familiar with.   I would be interested to learn more about Backbone.js!
+
 Bootstrap:  To maintain focus on the back end, I chose to use Boostrap to prototype the solution.
+
 Testing:  This is on the "what is left" list.  I am eager to learn more about unit and integration tests, and tests specifically for APIs! 
 
 If I were to spend more time on the project:
