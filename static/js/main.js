@@ -28,7 +28,7 @@ $('#api-info').append('<a href = "http://sfmoviesets-project.herokuapp.com/1988"
 
 $('#api-info').append('<h3>All Movies:</h3>');
 $('#api-info').append('<h4>Request Parameter:</h4>all-movies');
-$('#api-info').append('<h4>Response Parameters:</h4>All movies (string):  every movie title from our database!');
+$('#api-info').append('<h4>Response Parameters:</h4>All movies (string):  all 266 movie titles from our database!');
 $('#api-info').append('<h4>Call / Response:</h4>');
 $('#api-info').append('<a href = "http://sfmoviesets-project.herokuapp.com/all-movies" target="_blank">http://sfmoviesets-project.herokuapp.com/all-movies</a><br>');
 

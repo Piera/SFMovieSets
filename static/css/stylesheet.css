@@ -15,6 +15,12 @@ h2#logo {
 
 #movie-info {
     font-family: 'Roboto Slab', serif;
+
+}
+
+div #movie-info {
+    min-width: 590px;
+
 }
 
 #api-info {
