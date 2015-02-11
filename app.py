@@ -29,7 +29,26 @@ def lookup():
 	movie_data = json.dumps(location_list)
 	return movie_data
 
-@app.route('/all-movies')
+@app.route('/api/lookup', methods = ['GET', 'POST'])
+def lookup():
+	movie_input = request.values['movie']
+	movie_id=dbsession.query(model.Movie).filter_by(movie_title = movie_input).all()
+	if movie_id:
+		movies = dbsession.query(model.Movie_Location).filter_by(movie_id = movie_id[0].id).all()
+		location_list = []
+		for movie in movies:
+			if movie.fun_facts:
+				location_list.append({'location': movie.location, 'fun_fact': movie.fun_facts, 'lat':movie.lat, 'lng':movie.lng})
+			else: 
+				location_list.append({'location': movie.location, 'lat':movie.lat, 'lng':movie.lng})
+		if location_list == []:
+			location_list = ({'Error': "This movie is not in our SF Movie Sets database"})
+	else:
+		location_list = ({'Error': "This movie is not in our SF Movie Sets database"})
+	movie_data = json.dumps(location_list)
+	return movie_data
+
+@app.route('/api/all-movies')
 def movie_list():
 	movie_dict = {}
 	movie_list = []
@@ -40,7 +59,7 @@ def movie_list():
 	all_movies = json.dumps(movie_dict)
 	return all_movies
 
-@app.route('/<path:year>')
+@app.route('/api/<path:year>')
 def movies_by_year(year):
 	movie_dict = {}
 	movie_list = []
