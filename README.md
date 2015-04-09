@@ -7,7 +7,7 @@ Problem statement:
 
 Create a service that shows on a map where movies have been filmed in San Francisco. The user should be able to filter the view using autocompletion search.
 
-[**Visit SF Movie Sets online:**](http://www.sfmoviesets.com) 
+[**www.sfmoviesets.com**](http://www.sfmoviesets.com) 
 
 Solution Discussion:  
 
